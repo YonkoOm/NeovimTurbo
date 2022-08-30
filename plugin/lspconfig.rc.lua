@@ -101,6 +101,12 @@ nvim_lsp.jdtls.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.pylsp.setup {
+  on_attach = on_attach,
+  filetypes = { "py", "python" },
+  capabilities = capabilities
+}
+
 nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
   settings = {
