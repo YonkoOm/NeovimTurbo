@@ -7,11 +7,15 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
+  -- Color Schemes
+  use 'folke/tokyonight.nvim'
   use {
     'svrana/neosolarized.nvim',
     requires = { 'tjdevries/colorbuddy.nvim' }
   }
+  use { "catppuccin/nvim", as = "catppuccin" }
+
+  use 'wbthomason/packer.nvim'
   use 'nvim-lualine/lualine.nvim' -- Statusline
   use 'nvim-lua/plenary.nvim' -- Common utilities
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
@@ -23,8 +27,9 @@ packer.startup(function(use)
   use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use 'folke/tokyonight.nvim'
   use 'folke/lsp-colors.nvim'
+  use 'numToStr/Comment.nvim'
+  use 'glepnir/dashboard-nvim'
 
   use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'L3MON4D3/LuaSnip'
