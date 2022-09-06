@@ -107,6 +107,12 @@ nvim_lsp.pylsp.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.rust_analyzer.setup {
+  on_attach = on_attach,
+  filetypes = { "rs", "rust" },
+  capabilities = capabilities
+}
+
 nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
   settings = {
@@ -123,6 +129,18 @@ nvim_lsp.sumneko_lua.setup {
       },
     },
   },
+}
+
+nvim_lsp.html.setup {
+  on_attach = on_attach,
+  filetypes = { "html" },
+  capabilities = capabilities
+}
+
+nvim_lsp.cssls.setup {
+  on_attach = on_attach,
+  filtypes = { "css", "scss" },
+  capabilities = capabilities
 }
 
 nvim_lsp.tailwindcss.setup {}

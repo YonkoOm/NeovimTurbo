@@ -9,6 +9,10 @@ prettier.setup {
     "javascriptreact",
     "typescript",
     "typescriptreact",
+    "html",
+    "rust",
+    "python",
+    "java",
     "json",
     "scss",
     "less"
