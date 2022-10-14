@@ -3,11 +3,11 @@ if (not status) then return end
 
 comment.setup({
   toggler = {
-    line = '<C-/>',
+    line = '[c',
     block = 'gbb'
   },
   opleader = {
     line = 'gc',
-    block = '<C-/>'
+    block = '[c'
   }
 })
