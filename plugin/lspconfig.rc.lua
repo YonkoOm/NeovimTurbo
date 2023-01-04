@@ -78,7 +78,7 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 nvim_lsp.flow.setup({
 	on_attach = on_attach,
@@ -105,7 +105,7 @@ nvim_lsp.sourcekit.setup({
 
 nvim_lsp.clangd.setup({
 	on_attach = on_attach,
-	filetypes = { "c", "c++" },
+	filetypes = { "c", "cpp" },
 	capabilities = capabilities,
 })
 
@@ -132,7 +132,7 @@ nvim_lsp.rust_analyzer.setup({
 
 nvim_lsp.sumneko_lua.setup({
 	capabilities = capabilities,
-	on_attack = on_attach,
+	on_attach = on_attach,
 	--[[ on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     enable_format_on_save(client, bufnr)
@@ -169,6 +169,21 @@ nvim_lsp.tailwindcss.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+
+nvim_lsp.astro.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+nvim_lsp.marksman.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+--[[ nvim_lsp.ltex.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+}) ]]
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,
