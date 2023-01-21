@@ -24,10 +24,10 @@ ts.setup({
 		"cpp",
 		"rust",
 		"python",
-		"toml",
 		"fish",
 		"json",
 		"scss",
+		"markdown",
 	},
 	autotag = {
 		enable = true,
