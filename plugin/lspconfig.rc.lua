@@ -87,14 +87,11 @@ nvim_lsp.flow.setup({
 
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
-	cmd = { "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
 })
 
 nvim_lsp.quick_lint_js.setup({
 	on_attach = on_attach,
-	filetypes = { "javascript" },
 	capabilities = capabilities,
 })
 
@@ -105,7 +102,6 @@ nvim_lsp.sourcekit.setup({
 
 nvim_lsp.clangd.setup({
 	on_attach = on_attach,
-	filetypes = { "c", "cpp" },
 	capabilities = capabilities,
 })
 
@@ -114,19 +110,16 @@ nvim_lsp.jdtls.setup({
 		on_attach(client, bufnr)
 		enable_format_on_save(client, bufnr)
 	end,
-	filetypes = { "java" },
 	capabilities = capabilities,
 })
 
 nvim_lsp.pylsp.setup({
 	on_attach = on_attach,
-	filetypes = { "py", "python" },
 	capabilities = capabilities,
 })
 
 nvim_lsp.rust_analyzer.setup({
 	on_attach = on_attach,
-	filetypes = { "rs", "rust" },
 	capabilities = capabilities,
 })
 
@@ -155,13 +148,11 @@ nvim_lsp.sumneko_lua.setup({
 
 nvim_lsp.html.setup({
 	on_attach = on_attach,
-	filetypes = { "html" },
 	capabilities = capabilities,
 })
 
 nvim_lsp.cssls.setup({
 	on_attach = on_attach,
-	filtypes = { "css", "scss" },
 	capabilities = capabilities,
 })
 
