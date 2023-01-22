@@ -3,19 +3,33 @@ if not status then
 	return
 end
 
-saga.init_lsp_saga({
-	server_filetype_map = {
-		typescript = "typescript",
+saga.setup({
+	ui = {
+		border = "rounded",
+		colors = {
+			normal_bg = "none",
+		},
 	},
 })
 
+local diagnostic = require("lspsaga.diagnostic")
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>jb", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-vim.keymap.set("n", "<C-j>", "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+vim.keymap.set("n", "<C-j>", diagnostic.goto_next, opts)
+vim.keymap.set("n", "<C-k>", diagnostic.goto_prev, opts)
+vim.keymap.set("n", "gl", diagnostic.show_diagnostics, opts)
 vim.keymap.set("n", "K", "<Cmd>Lspsaga hover_doc<CR>", opts)
 vim.keymap.set("n", "gd", "<Cmd>Lspsaga lsp_finder<CR>", opts)
-vim.keymap.set("i", "<C-k>", "<Cmd>Lspsaga signature_help<CR>", opts)
+-- vim.keymap.set("i", "<C-k>", "<Cmd>Lspsaga signature_help<CR>", opts)
+vim.keymap.set("i", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 vim.keymap.set("n", "gp", "<Cmd>Lspsaga peek_definition<CR>", opts)
 vim.keymap.set("n", "gr", "<Cmd>Lspsaga rename<CR>", opts)
-vim.keymap.set("n", "<leader>ca", "<Cmd>Lspsaga code_action<CR>", opts)
-vim.keymap.set("v", "<leader>ca", "<Cmd>Lspsaga range_code_action<CR>", opts)
+
+-- code action
+local codeaction = require("lspsaga.codeaction")
+vim.keymap.set("n", "<leader>ca", function()
+	codeaction:code_action()
+end, { silent = true })
+vim.keymap.set("v", "<leader>ca", function()
+	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
+	codeaction:range_code_action()
+end, { silent = true })
