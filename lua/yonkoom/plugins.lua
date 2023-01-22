@@ -34,7 +34,8 @@ packer.startup(function(use)
 	use("numToStr/Comment.nvim")
 	use("glepnir/dashboard-nvim")
 	use("mbbill/undotree")
-  use("tpope/vim-fugitive")
+	use("tpope/vim-fugitive")
+	use("lewis6991/impatient.nvim")
 
 	use("glepnir/lspsaga.nvim") -- LSP UIs
 	use("L3MON4D3/LuaSnip")

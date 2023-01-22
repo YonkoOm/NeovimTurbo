@@ -1,3 +1,4 @@
+require("impatient")
 require("yonkoom.base")
 require("yonkoom.highlights")
 require("yonkoom.keymaps")
