@@ -32,7 +32,12 @@ packer.startup(function(use)
 	use("williamboman/mason-lspconfig.nvim")
 	use("folke/lsp-colors.nvim")
 	use("numToStr/Comment.nvim")
-	use("glepnir/dashboard-nvim")
+	use({
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
+	use("nvim-orgmode/orgmode")
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
 	use("lewis6991/impatient.nvim")

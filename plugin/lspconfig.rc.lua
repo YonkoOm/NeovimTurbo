@@ -79,6 +79,8 @@ protocol.CompletionItemKind = {
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local clang_capabilities = require("cmp_nvim_lsp").default_capabilities()
+clang_capabilities.offsetEncoding = { "utf-16" }
 
 nvim_lsp.flow.setup({
 	on_attach = on_attach,
@@ -102,7 +104,7 @@ nvim_lsp.sourcekit.setup({
 
 nvim_lsp.clangd.setup({
 	on_attach = on_attach,
-	capabilities = capabilities,
+	capabilities = clang_capabilities,
 })
 
 nvim_lsp.jdtls.setup({
@@ -123,7 +125,7 @@ nvim_lsp.rust_analyzer.setup({
 	capabilities = capabilities,
 })
 
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	--[[ on_attach = function(client, bufnr)

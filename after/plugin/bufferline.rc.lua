@@ -6,7 +6,7 @@ local color_status, kanagawa = pcall(require, "kanagawa.colors")
 if not color_status then
 	return
 end
-local colors = kanagawa.setup()
+local colors = kanagawa.setup({ theme = "wave" }).palette
 
 bufferline.setup({
 	options = {
