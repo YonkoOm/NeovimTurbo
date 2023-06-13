@@ -1,4 +1,4 @@
---[[ local colorscheme = "tokyonight"
+local colorscheme = "tokyonight"
 -- vim.g.colorscheme = "tokyonight"
 local status, tokyonight = pcall(require, colorscheme)
 if not status then
@@ -48,4 +48,4 @@ end
 
 ColorMyPencils()
 
-vim.cmd("colorscheme " .. colorscheme) ]]
+vim.cmd("colorscheme " .. colorscheme)

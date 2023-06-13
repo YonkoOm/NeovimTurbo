@@ -1,4 +1,4 @@
---[[ local colorscheme = "catppuccin"
+local colorscheme = "catppuccin"
 local status, catppuccin = pcall(require, colorscheme)
 if not status then
 	print("Colorscheme " .. colorscheme .. " not found!")
@@ -192,4 +192,4 @@ catppuccin.setup({
 	},
 })
 
-vim.cmd("colorscheme " .. colorscheme) ]]
+vim.cmd("colorscheme " .. colorscheme)
