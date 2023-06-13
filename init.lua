@@ -10,9 +10,9 @@ end
 local is_mac = has("macunix")
 local is_win = has("win32")
 
-if is_mac then
+if is_mac == 1 then
 	require("yonkoom.macos")
 end
-if is_win then
+if is_win == 1 then
 	require("yonkoom.windows")
 end
