@@ -40,7 +40,6 @@ packer.startup(function(use)
 	use("nvim-orgmode/orgmode")
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
-	use("lewis6991/impatient.nvim")
 
 	use("glepnir/lspsaga.nvim") -- LSP UIs
 	use("L3MON4D3/LuaSnip")

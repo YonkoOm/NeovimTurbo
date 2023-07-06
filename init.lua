@@ -1,4 +1,5 @@
-require("impatient")
+vim.loader.enable() -- Enable the Lua Module Loader
+
 require("yonkoom.base")
 require("yonkoom.highlights")
 require("yonkoom.keymaps")
