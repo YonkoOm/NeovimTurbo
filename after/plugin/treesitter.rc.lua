@@ -26,8 +26,8 @@ ts.setup({
 		"python",
 		"fish",
 		"json",
-		"scss",
 		"markdown",
+		"markdown_inline",
 	},
 	autotag = {
 		enable = true,
