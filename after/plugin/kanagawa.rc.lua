@@ -19,8 +19,8 @@ kanagawa.setup({
 		local theme = colors.theme
 		local palette = colors.palette
 		return {
-			CursorLineNr = { fg = palette.carpYellow, bold = false },
-			HoverBorder = { fg = palette.autumnYellow },
+			CursorLineNr = { fg = palette.lightBlue, bold = false },
+			HoverBorder = { fg = palette.crystalBlue },
 
 			-- Telescope
 			TelescopeTitle = { fg = theme.ui.special, bold = true },
@@ -36,11 +36,8 @@ kanagawa.setup({
 			PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 			PmenuSbar = { bg = theme.ui.bg_m1 },
 			PmenuThumb = { bg = theme.ui.bg_p2 },
-
-			-- theme colors will update dynamically when you change theme!
-			SomePluginHl = { fg = colors.theme.syn.type, bold = true },
 		}
 	end,
 })
 
-kanagawa.load("wave")
+vim.cmd("colorscheme kanagawa-wave")

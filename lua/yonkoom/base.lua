@@ -8,6 +8,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 vim.g.mapleader = " "
+vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 vim.opt.title = true
 vim.opt.autoindent = true

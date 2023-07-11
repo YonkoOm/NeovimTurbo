@@ -1,4 +1,3 @@
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-vim.keymap.set("n", "<leader>gd", ":Git diff<CR>")
-vim.keymap.set("n", "<leader>gb", ":Git blame<CR>")
-vim.keymap.set("n", "<leader>ga", ":Git add")
+vim.keymap.set("n", "<leader>gd", ":Gdiff<cr>")
+vim.keymap.set("n", "<leader>go", ":GBrowse<cr>")
+vim.keymap.set("n", "<leader>gb", ":G blame<cr>")

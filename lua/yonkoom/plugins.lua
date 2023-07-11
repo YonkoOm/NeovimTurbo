@@ -32,14 +32,10 @@ packer.startup(function(use)
 	use("williamboman/mason-lspconfig.nvim")
 	use("folke/lsp-colors.nvim")
 	use("numToStr/Comment.nvim")
-	use({
-		"glepnir/dashboard-nvim",
-		event = "VimEnter",
-		requires = { "nvim-tree/nvim-web-devicons" },
-	})
-	use("nvim-orgmode/orgmode")
+	use("glepnir/dashboard-nvim")
 	use("mbbill/undotree")
-	use("tpope/vim-fugitive")
+	use("tpope/vim-fugitive") -- Git operatiions within vim/neovim
+	use("tpope/vim-rhubarb")
 
 	use("glepnir/lspsaga.nvim") -- LSP UIs
 	use("L3MON4D3/LuaSnip")
@@ -56,15 +52,8 @@ packer.startup(function(use)
 	use("windwp/nvim-ts-autotag")
 	use("norcalli/nvim-colorizer.lua")
 	use("folke/zen-mode.nvim")
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	})
+	use("iamcco/markdown-preview.nvim")
 	use("akinsho/nvim-bufferline.lua")
-	-- use 'github/copilot.vim'
 
 	use("lewis6991/gitsigns.nvim")
-	use("dinhhuy258/git.nvim") -- For git blame & browse
 end)

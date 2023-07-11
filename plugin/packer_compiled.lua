@@ -110,10 +110,8 @@ _G.packer_plugins = {
     url = "https://github.com/tjdevries/colorbuddy.nvim"
   },
   ["dashboard-nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/opt/dashboard-nvim",
+    loaded = true,
+    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
     url = "https://github.com/glepnir/dashboard-nvim"
   },
   ["git.nvim"] = {
@@ -125,11 +123,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
-  ["impatient.nvim"] = {
-    loaded = true,
-    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/impatient.nvim",
-    url = "https://github.com/lewis6991/impatient.nvim"
   },
   ["kanagawa.nvim"] = {
     loaded = true,
@@ -221,11 +214,6 @@ _G.packer_plugins = {
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  orgmode = {
-    loaded = true,
-    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/orgmode",
-    url = "https://github.com/nvim-orgmode/orgmode"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -271,6 +259,11 @@ _G.packer_plugins = {
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
   },
+  ["vim-rhubarb"] = {
+    loaded = true,
+    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
+    url = "https://github.com/tpope/vim-rhubarb"
+  },
   ["zen-mode.nvim"] = {
     loaded = true,
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
@@ -279,13 +272,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Event lazy-loads
-time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'dashboard-nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-time([[Defining lazy-load event autocommands]], false)
-vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

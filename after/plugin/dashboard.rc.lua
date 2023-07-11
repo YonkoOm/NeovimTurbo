@@ -1,10 +1,10 @@
-local status, dashboard = pcall(require, "dashboard")
+local status, db = pcall(require, "dashboard")
 if not status then
 	print("dashboard not found!")
 	return
 end
 
-dashboard.setup({
+db.setup({
 	theme = "hyper",
 	config = {
 		week_header = {
@@ -17,16 +17,16 @@ dashboard.setup({
 		shortcut = {
 			{
 				desc = "Update",
-				icon = " ",
-				group = "@variable.builtin",
+				icon = " ",
+				group = "Include",
 				action = "PackerUpdate",
 				key = "u",
 			},
 			{
 				icon = " ",
 				desc = "Files",
-				group = "@number",
-				action = "Telescope find_files",
+				group = "Function",
+				action = "Telescope find_files find_command=rg,--ignore,--hidden,--files",
 				key = "f",
 			},
 			{
@@ -38,12 +38,12 @@ dashboard.setup({
 			},
 			{
 				icon = " ",
-				desc = "dotfiles",
+				desc = "config",
 				group = "Constant",
-				action = "Telescope dotfiles",
+				action = "Telescope config",
 				key = "d",
 			},
 		},
-		footer = { "This too, shall pass" },
+		footer = { "", "🍥 This too, shall pass 🍥" },
 	},
 })

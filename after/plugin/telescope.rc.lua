@@ -46,6 +46,8 @@ telescope.setup({
 })
 
 telescope.load_extension("file_browser")
+telescope.load_extension("config")
+telescope.load_extension("app")
 
 vim.keymap.set("n", ";f", function()
 	builtin.find_files({

@@ -43,22 +43,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local clang_capabilities = require("cmp_nvim_lsp").default_capabilities()
 clang_capabilities.offsetEncoding = { "utf-16" }
 
-nvim_lsp.flow.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
 nvim_lsp.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-nvim_lsp.quick_lint_js.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-nvim_lsp.sourcekit.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
@@ -116,11 +101,6 @@ nvim_lsp.cssls.setup({
 })
 
 nvim_lsp.tailwindcss.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-nvim_lsp.astro.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })

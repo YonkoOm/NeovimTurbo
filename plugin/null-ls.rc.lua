@@ -24,7 +24,6 @@ null_ls.setup({
 		null_ls.builtins.formatting.deno_fmt.with({
 			filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
 		}),
-		-- null_ls.builtins.formatting.prettier,
 		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.rustfmt,
 		-- diagnostics
@@ -32,13 +31,6 @@ null_ls.setup({
 			diagnostics_format = "[eslint] #{m}\n(#{c})",
 		}),
 		null_ls.builtins.diagnostics.fish,
-		-- spell checker
-		null_ls.builtins.diagnostics.cspell.with({
-			filetypes = { "markdown" },
-		}),
-		null_ls.builtins.code_actions.cspell.with({
-			filetypes = { "markdown" },
-		}),
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
