@@ -18,7 +18,6 @@ packer.startup(function(use)
 	use("bluz71/vim-nightfly-guicolors")
 	use("rebelot/kanagawa.nvim")
 
-	use("psf/black") -- python formatter
 	use("wbthomason/packer.nvim")
 	use("nvim-lualine/lualine.nvim") -- Statusline
 	use("nvim-lua/plenary.nvim") -- Common utilities
@@ -30,12 +29,9 @@ packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim") -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
-	use("folke/lsp-colors.nvim")
 	use("numToStr/Comment.nvim")
 	use("glepnir/dashboard-nvim")
 	use("mbbill/undotree")
-	use("tpope/vim-fugitive") -- Git operatiions within vim/neovim
-	use("tpope/vim-rhubarb")
 
 	use("glepnir/lspsaga.nvim") -- LSP UIs
 	use("L3MON4D3/LuaSnip")
@@ -54,6 +50,7 @@ packer.startup(function(use)
 	use("folke/zen-mode.nvim")
 	use("iamcco/markdown-preview.nvim")
 	use("akinsho/nvim-bufferline.lua")
-
+	use("tpope/vim-fugitive") -- Git operatiions within vim/neovim
+	use("tpope/vim-rhubarb") -- Enables the ability to open GitHub URLs directly from vim/neovim
 	use("lewis6991/gitsigns.nvim")
 end)

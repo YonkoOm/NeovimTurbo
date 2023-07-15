@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  black = {
-    loaded = true,
-    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/black",
-    url = "https://github.com/psf/black"
-  },
   catppuccin = {
     loaded = true,
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/catppuccin",
@@ -114,11 +109,6 @@ _G.packer_plugins = {
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
     url = "https://github.com/glepnir/dashboard-nvim"
   },
-  ["git.nvim"] = {
-    loaded = true,
-    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/git.nvim",
-    url = "https://github.com/dinhhuy258/git.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -128,11 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
-  },
-  ["lsp-colors.nvim"] = {
-    loaded = true,
-    path = "/Users/lilbroomstick/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim",
-    url = "https://github.com/folke/lsp-colors.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
