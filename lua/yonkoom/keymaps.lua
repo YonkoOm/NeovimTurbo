@@ -25,6 +25,10 @@ keymap.set("x", "<leader>p", [["_dP]])
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 
+-- Improved indenting
+keymap.set("v", ">", ">gv")
+keymap.set("v", "<", "<gv")
+
 -- Save with root permission (not working for now)
 --vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
 

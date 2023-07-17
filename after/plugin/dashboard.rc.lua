@@ -44,6 +44,6 @@ db.setup({
 				key = "d",
 			},
 		},
-		footer = { "", "🍥 This too, shall pass 🍥" },
+		footer = { "", "🍥 dolce far niente 🍥" },
 	},
 })
