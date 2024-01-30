@@ -1,16 +1,22 @@
 local status, autotag = pcall(require, "nvim-ts-autotag")
-if (not status) then return end
+if not status then
+	return
+end
 
-autotag.setup({})
-
-require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,
-    filetypes = {'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
-    'xml',
-    'php',
-    'markdown',
-    'glimmer','handlebars','hbs'
-  }
-  }
-}
+autotag.setup({
+	filetypes = {
+		"html",
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"typescriptreact",
+		"svelte",
+		"vue",
+		"tsx",
+		"jsx",
+		"xml",
+		"php",
+		"markdown",
+	},
+	enable_close_on_slash = false,
+})

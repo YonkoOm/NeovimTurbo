@@ -29,6 +29,7 @@ null_ls.setup({
 		-- diagnostics
 		null_ls.builtins.diagnostics.eslint_d.with({
 			diagnostics_format = "[eslint] #{m}\n(#{c})",
+			filetypes = { "typescriptreact", "javascriptreact" },
 		}),
 		null_ls.builtins.diagnostics.fish,
 	},
