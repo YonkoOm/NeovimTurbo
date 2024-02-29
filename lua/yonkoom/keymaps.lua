@@ -18,7 +18,7 @@ keymap.set("n", "<leader>nh", ":noh<CR>")
 -- Deletes text without replacing value in default register
 keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- Deletes text in visual mode without replacing value in default register and pastes b/f cursor
+-- Deletes text in visual mode without replacing value in default register and pastes b/f cursor (Shift - P does the same thing as well)
 keymap.set("x", "<leader>p", [["_dP]])
 
 -- Yanks text to the system clipboard
@@ -28,9 +28,6 @@ keymap.set("n", "<leader>Y", [["+Y]])
 -- Improved indenting
 keymap.set("v", ">", ">gv")
 keymap.set("v", "<", "<gv")
-
--- Save with root permission (not working for now)
---vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
 
 -- New tab
 keymap.set("n", "te", ":tabedit")
@@ -53,3 +50,10 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 -- Vertical Movements
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- Move selected lines with shift+j or shift+k
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Join line while keeping the cursor in the same position
+-- vim.keymap.set("n", "J", "mzJ`z")
