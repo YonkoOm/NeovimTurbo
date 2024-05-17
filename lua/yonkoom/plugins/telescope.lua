@@ -67,36 +67,9 @@ return {
 			},
 		})
 
-		telescope.load_extension("fzf")
-		telescope.load_extension("file_browser")
+		pcall(telescope.load_extension, "fzf")
+		pcall(telescope.load_extension, "file_browser")
 
-		vim.keymap.set("n", ";f", function()
-			builtin.find_files({
-				no_ignore = false,
-				hidden = true,
-			})
-		end)
-		vim.keymap.set("n", ";r", function()
-			builtin.live_grep()
-		end)
-		vim.keymap.set("n", "\\\\", function()
-			builtin.buffers()
-		end)
-		vim.keymap.set("n", ";t", function()
-			builtin.help_tags()
-		end)
-		vim.keymap.set("n", ";;", function()
-			builtin.resume()
-		end)
-		vim.keymap.set("n", ";e", function()
-			builtin.diagnostics()
-		end)
-		vim.keymap.set("n", ";o", function()
-			builtin.oldfiles()
-		end)
-		vim.keymap.set("n", ";c", function()
-			builtin.grep_string()
-		end)
 		vim.keymap.set("n", "sf", function()
 			telescope.extensions.file_browser.file_browser({
 				path = "%:p:h",
@@ -109,5 +82,32 @@ return {
 				layout_config = { height = 40 },
 			})
 		end)
+
+		vim.keymap.set("n", ";f", function()
+			builtin.find_files({
+				no_ignore = false,
+				hidden = true,
+			})
+		end)
+
+		vim.keymap.set("n", "sn", function()
+			builtin.find_files({ cwd = vim.fn.stdpath("config") })
+		end)
+
+		vim.keymap.set("n", "<leader>/", function()
+			builtin.current_buffer_fuzzy_find({
+				windblend = 1,
+				previewer = false,
+				layout_config = { height = 40, width = 150 },
+			})
+		end)
+
+		vim.keymap.set("n", ";r", builtin.live_grep)
+		vim.keymap.set("n", "\\\\", builtin.buffers)
+		vim.keymap.set("n", ";t", builtin.help_tags)
+		vim.keymap.set("n", ";;", builtin.resume)
+		vim.keymap.set("n", ";e", builtin.diagnostics)
+		vim.keymap.set("n", ";o", builtin.oldfiles)
+		vim.keymap.set("n", ";c", builtin.grep_string)
 	end,
 }
