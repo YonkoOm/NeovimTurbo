@@ -42,10 +42,10 @@ keymap.set("", "sj", "<C-w>j")
 keymap.set("", "sl", "<C-w>l")
 
 -- Resize window
-keymap.set("n", "<C-w><left>", "<C-w><")
-keymap.set("n", "<C-w><right>", "<C-w>>")
-keymap.set("n", "<C-w><up>", "<C-w>+")
-keymap.set("n", "<C-w><down>", "<C-w>-")
+keymap.set("n", "<M-,>", "<C-w><")
+keymap.set("n", "<M-.>", "<C-w>>")
+keymap.set("n", "<M-b>", "<C-w>+")
+keymap.set("n", "<M-s>", "<C-w>-")
 
 -- Vertical Movements
 keymap.set("n", "<C-d>", "<C-d>zz")
