@@ -3,9 +3,11 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
-		"L3MON4D3/LuaSnip", -- snippet engine
+		"hrsh7th/cmp-path", -- file system paths
+		{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, -- snippet engine
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
+		"rafamadriz/friendly-snippets", -- use alongside LuaSnip
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -31,26 +33,34 @@ return {
 			return vim_item
 		end
 
+		require("luasnip.loaders.from_vscode").lazy_load()
+
 		cmp.setup({
+			completion = {
+				completeopt = "menu,menuone,preview,noinsert",
+			},
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			mapping = cmp.mapping.preset.insert({
+			mapping = {
 				["<C-d>"] = cmp.mapping.scroll_docs(-4), -- Allows me to scroll through documention when using autocomplete
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
+				["<C-n>"] = cmp.mapping.select_next_item(),
+				["<C-p>"] = cmp.mapping.select_prev_item(),
 				["<C-Space>"] = cmp.mapping.complete(),
-				["<C-e>"] = cmp.mapping.close(),
+				["<C-e>"] = cmp.mapping.abort(),
 				["<CR>"] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = true,
 				}),
-			}),
+			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "buffer" },
-				{ name = "luasnip" },
+				{ name = "nvim_lsp" }, -- LSP completion
+				{ name = "buffer" }, -- text withing current buffer
+				{ name = "path" }, -- file system paths
+				{ name = "luasnip" }, -- snippets
 			}),
 			formatting = {
 				format = lspkind.cmp_format({
@@ -64,9 +74,16 @@ return {
 			},
 		})
 
-		vim.cmd([[
-      set completeopt=menuone,noinsert,preview,noselect
-      highlight! default link CmpItemKind CmpItemMenuDefault
-    ]])
+		vim.keymap.set({ "i", "s" }, "<c-l>", function()
+			if luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			end
+		end, { silent = true })
+
+		vim.keymap.set({ "i", "s" }, "<c-h>", function()
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			end
+		end, { silent = true })
 	end,
 }

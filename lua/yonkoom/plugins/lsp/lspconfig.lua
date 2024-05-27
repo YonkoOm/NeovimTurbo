@@ -5,8 +5,9 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
-		local nvim_lsp = require("lspconfig")
+		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local mason_lspconfig = require("mason-lspconfig")
 
 		local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 		local enable_format_on_save = function(_, bufnr)
@@ -20,93 +21,75 @@ return {
 			})
 		end
 
-		-- Use an on_attach function to only map the following keys
-		-- after the language server attaches to the current buffer
-		local on_attach = function(client, bufnr)
-			local keymap = vim.keymap
+		local augroup = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }) -- Centralize LSP Configurations around this group
+		-- Use LspAttach autocommand to map the following keys after the language server attaches to the current buffer
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = augroup,
+			callback = function(ev)
+				-- Mappings.
+				local opts = { buffer = ev.buf, noremap = true, silent = true }
 
-			-- Mappings.
-			local opts = { noremap = true, silent = true }
+				-- See `:help vim.lsp.*` for documentation on any of the below functions
+				vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+				-- keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
-			-- See `:help vim.lsp.*` for documentation on any of the below functions
-			keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-			keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-			-- keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-
-			opts.desc = "Restart LSP"
-			keymap.set("n", "<leader>rs", "<Cmd>LspRestart<CR>", opts) -- mapping to restart lsp if necessary
-		end
-
-		-- Set up completion using nvim_cmp with LSP source
-		local capabilities = cmp_nvim_lsp.default_capabilities()
-		local clang_capabilities = cmp_nvim_lsp.default_capabilities()
-		clang_capabilities.offsetEncoding = { "utf-16" }
-
-		nvim_lsp.tsserver.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		nvim_lsp.clangd.setup({
-			on_attach = on_attach,
-			capabilities = clang_capabilities,
-		})
-
-		nvim_lsp.jdtls.setup({
-			on_attach = function(client, bufnr)
-				on_attach(client, bufnr)
-				enable_format_on_save(client, bufnr)
+				opts.desc = "Restart LSP"
+				vim.keymap.set("n", "<leader>rs", "<Cmd>LspRestart<CR>", opts)
 			end,
-			capabilities = capabilities,
 		})
 
-		nvim_lsp.pylsp.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
+		-- for enabling autocompletion (apply to every lsp server)
+		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		nvim_lsp.rust_analyzer.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		nvim_lsp.lua_ls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {
-				Lua = {
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
+		mason_lspconfig.setup_handlers({
+			-- Default handler for installed servers
+			function(server_name)
+				lspconfig[server_name].setup({
+					capabilities = capabilities,
+				})
+			end,
+			-- Below are specific LSP's we don't run the default handler on due to specific configurations
+			["jdtls"] = function()
+				lspconfig.jdtls.setup({
+					capabilities = capabilities,
+					on_attach = function(client, bufnr)
+						enable_format_on_save(client, bufnr)
+					end,
+				})
+			end,
+			["lua_ls"] = function()
+				-- configure lua server (with special settings)
+				lspconfig.lua_ls.setup({
+					capabilities = capabilities,
+					settings = {
+						Lua = {
+							-- make the language server recognize "vim" global
+							diagnostics = {
+								globals = { "vim" },
+							},
+							completion = {
+								callSnippet = "Replace",
+							},
+						},
 					},
-
-					workspace = {
-						-- Make the server aware of Neovim runtime files
-						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-						[vim.fn.stdpath("config") .. "/lua"] = true,
+				})
+			end,
+			["clangd"] = function()
+				lspconfig.clangd.setup({
+					capabilities = capabilities,
+					cmd = {
+						"clangd",
+						"--background-index",
+						"--suggest-missing-includes",
+						"--clang-tidy",
+						"--header-insertion=iwyu",
 					},
-				},
-			},
-		})
-
-		nvim_lsp.html.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		nvim_lsp.cssls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		nvim_lsp.tailwindcss.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		nvim_lsp.marksman.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
+					filetypes = {
+						"c",
+					},
+				})
+			end,
 		})
 
 		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
