@@ -2,9 +2,6 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
-	dependencies = {
-		"windwp/nvim-ts-autotag",
-	},
 	config = function()
 		local ts = require("nvim-treesitter.configs")
 
@@ -31,9 +28,6 @@ return {
 				"json",
 				"markdown",
 				"markdown_inline",
-			},
-			autotag = {
-				enable = true,
 			},
 		})
 
