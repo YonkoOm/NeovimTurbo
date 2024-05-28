@@ -55,5 +55,13 @@ keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Open current file in a browser
+keymap.set("n", "<leader>of", "<Cmd>lua vim.ui.open(vim.fn.expand('%'))<CR>")
+
+-- Toggle to set scrolloff to essentially lock cursor to center of the screen or to set the scrolloff back to its original value
+vim.keymap.set("n", "<leader>to", function()
+	vim.opt.scrolloff = 999 - vim.o.scrolloff
+end)
+
 -- Join line while keeping the cursor in the same position
 -- vim.keymap.set("n", "J", "mzJ`z")
