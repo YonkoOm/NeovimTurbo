@@ -42,7 +42,7 @@ keymap.set("", "sj", "<C-w>j")
 keymap.set("", "sl", "<C-w>l")
 
 -- Resize window
-keymap.set("n", "<M-,>", "<C-w><")
+keymap.set("n", "<M-,>", "<C-w><") -- The "M" stand for meta key which is just represented as the Alt key on modern keyboards
 keymap.set("n", "<M-.>", "<C-w>>")
 keymap.set("n", "<M-b>", "<C-w>+")
 keymap.set("n", "<M-s>", "<C-w>-")
@@ -59,9 +59,15 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "<leader>of", "<Cmd>lua vim.ui.open(vim.fn.expand('%'))<CR>")
 
 -- Toggle to set scrolloff to essentially lock cursor to center of the screen or to set the scrolloff back to its original value
-vim.keymap.set("n", "<leader>to", function()
+keymap.set("n", "<leader>to", function()
 	vim.opt.scrolloff = 999 - vim.o.scrolloff
 end)
+
+keymap.set("i", "<S-Tab>", "<C-d>")
+
+-- Quickfix keymaps
+keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
+keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 
 -- Join line while keeping the cursor in the same position
 -- vim.keymap.set("n", "J", "mzJ`z")
