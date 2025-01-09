@@ -6,7 +6,7 @@ return {
 		"hrsh7th/cmp-path", -- file system paths
 		{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, -- snippet engine
 		"onsails/lspkind.nvim", -- vs-code like pictograms
-		"saadparwaiz1/cmp_luasnip", -- for autocompletion
+		"saadparwaiz1/cmp_luasnip", -- for luasnip autocompletion
 		"rafamadriz/friendly-snippets", -- use alongside LuaSnip
 	},
 	config = function()
