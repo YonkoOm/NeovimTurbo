@@ -14,9 +14,25 @@ return {
 		local lspkind = require("lspkind")
 		local luasnip = require("luasnip")
 
-		local function tailwindCSSFormatter(entry, vim_item)
-			if vim_item.kind == "Color" and entry.completion_item.documentation then
-				local _, _, r, g, b = string.find(entry.completion_item.documentation, "^rgb%((%d+), (%d+), (%d+)")
+		local hexToRGB = function(hex)
+			-- Remove the '#' if it exists
+			hex = hex:gsub("#", "")
+
+			-- Extract the red, green, and blue components
+			local r = tonumber(hex:sub(1, 2), 16)
+			local g = tonumber(hex:sub(3, 4), 16)
+			local b = tonumber(hex:sub(5, 6), 16)
+
+			return r, g, b
+		end
+
+		local tailwindCSSFormatter = function(entry, vim_item)
+			if
+				vim_item.kind == "Color"
+				and entry.completion_item.documentation
+				and type(entry.completion_item.documentation) == "string"
+			then
+				local r, g, b = hexToRGB(entry.completion_item.documentation)
 				if r then
 					local color = string.format("%02x", r) .. string.format("%02x", g) .. string.format("%02x", b)
 					local group = "Tw_" .. color
