@@ -4,7 +4,6 @@ return {
 	config = function()
 		local conform = require("conform")
 		conform.setup({
-
 			formatters_by_ft = {
 				javascript = { "prettierd" },
 				typescript = { "prettierd" },
@@ -18,12 +17,12 @@ return {
 				python = { "isort", "black" },
 				c = { "clang_format" },
 			},
-			format_on_save = function(bufnr)
+			format_on_save = function(bufnr) -- conform automatically sets up the BufWritePre autocmd to format the file prior to writing/saving it
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 					return
 				end
 				return {
-					lsp_fallback = true,
+					lsp_format = "fallback",
 					async = false,
 					timeout_ms = 500,
 				}
@@ -33,9 +32,9 @@ return {
 
 		vim.keymap.set({ "n", "v" }, "<leader>ff", function()
 			conform.format({
-				lsp_fallback = true,
+				lsp_format = "fallback",
 				async = false,
-				timeout_ms = 1000,
+				timeout_ms = 500,
 			})
 		end, { desc = "Format file or range (in visual mode)" })
 
