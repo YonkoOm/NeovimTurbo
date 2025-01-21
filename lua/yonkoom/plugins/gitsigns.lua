@@ -42,7 +42,6 @@ return {
 					gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 				end)
 				map("n", "<leader>hS", gs.stage_buffer)
-				map("n", "<leader>hu", gs.undo_stage_hunk)
 				map("n", "<leader>hR", gs.reset_buffer) -- Reset file to last committed version
 				map("n", "<leader>hp", gs.preview_hunk) -- Preview changes from last committed version
 				map("n", "<leader>hb", function()
@@ -53,7 +52,7 @@ return {
 				map("n", "<leader>hD", function()
 					gs.diffthis("~")
 				end)
-				map("n", "<leader>td", gs.toggle_deleted)
+				map("n", "<leader>hi", gs.preview_hunk_inline)
 				-- Text object
 				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 			end,
