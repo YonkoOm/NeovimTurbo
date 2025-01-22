@@ -14,8 +14,8 @@ return {
 				json = { "prettierd" },
 				markdown = { "prettierd" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
 				c = { "clang_format" },
+				-- python = { "isort", "black" },
 			},
 			format_on_save = function(bufnr) -- conform automatically sets up the BufWritePre autocmd to format the file prior to writing/saving it
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
