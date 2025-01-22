@@ -3,6 +3,17 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
+		{
+			"folke/lazydev.nvim",
+			ft = "lua", -- only load on lua files
+			opts = {
+				library = {
+					-- See the configuration section for more details
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -39,7 +50,8 @@ return {
 			end,
 		})
 
-		-- for enabling autocompletion (apply to every lsp server)
+		-- for enabling autocompletion (apply to every lsp server) -> tells the LSP "I know how to do a bunch of stuff that you might not have known I knew how to do" -> essentially a way to communicate between LSPs and nvim_lsp and allows us to receive more types of completion candidates. (https://github.com/hrsh7th/cmp-nvim-lsp)
+		-- We override these capabilities sent to the server such that these completion candidates provided by nvim_lsp are provided by the server during a completion request
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
 		mason_lspconfig.setup_handlers({
@@ -64,10 +76,6 @@ return {
 					capabilities = capabilities,
 					settings = {
 						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
 							completion = {
 								callSnippet = "Replace",
 							},
@@ -87,6 +95,7 @@ return {
 					},
 					filetypes = {
 						"c",
+						"cpp",
 					},
 				})
 			end,
@@ -112,7 +121,7 @@ return {
 			},
 			update_in_insert = true,
 			float = {
-				source = "always", -- Or "if_many"
+				source = true, -- Or "if_many"
 			},
 		})
 	end,
