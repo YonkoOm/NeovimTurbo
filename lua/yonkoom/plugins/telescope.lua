@@ -29,7 +29,13 @@ return {
 					},
 				},
 			},
+			-- pickers = {
+			-- 	find_files = {
+			-- 		theme = "ivy",
+			-- 	},
+			-- },
 			extensions = {
+				fzf = {},
 				file_browser = {
 					theme = "dropdown",
 					-- disables netrw and use telescope-file-browser in its place
@@ -77,20 +83,20 @@ return {
 				respect_gitignore = false,
 				hidden = true,
 				grouped = true,
-				previewer = false,
+				previewer = true,
 				initial_mode = "normal",
-				layout_config = { height = 40 },
+				layout_config = { height = 40, width = 100 },
 			})
 		end)
 
 		vim.keymap.set("n", ";f", function()
 			builtin.find_files({
 				no_ignore = false,
-				hidden = true,
+				hidden = false,
 			})
 		end)
 
-		vim.keymap.set("n", "sn", function()
+		vim.keymap.set("n", "<leader>sn", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end)
 
@@ -98,7 +104,14 @@ return {
 			builtin.current_buffer_fuzzy_find({
 				windblend = 1,
 				previewer = false,
-				layout_config = { height = 40, width = 150 },
+				layout_config = { height = 40, width = 100 },
+			})
+		end)
+
+		-- search every file that is installed by lazy
+		vim.keymap.set("n", "<leader>lz", function()
+			builtin.find_files({
+				cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
 			})
 		end)
 
