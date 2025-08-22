@@ -7,6 +7,10 @@ return {
 		kanagawa.setup({
 			transparent = true,
 			colors = {
+				palette = {
+					dragonBlack0 = "#000000",
+					dragonBlack3 = "#151210",
+				},
 				theme = {
 					all = {
 						ui = {

@@ -7,9 +7,12 @@ return {
 			view_options = {
 				show_hidden = true,
 			},
+			float = {
+				preview_split = "right",
+			},
 		})
 
 		vim.keymap.set("n", "<leader>-", "<Cmd>Oil<CR>", { desc = "Open Parent Directory " })
-		-- vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		vim.keymap.set("n", "<leader>f-", "<Cmd>Oil --float<CR>", { desc = "Open Parent Directory in Floating Window" })
 	end,
 }

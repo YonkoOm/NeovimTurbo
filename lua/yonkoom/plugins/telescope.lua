@@ -109,7 +109,7 @@ return {
 		end)
 
 		-- search every file that is installed by lazy
-		vim.keymap.set("n", "<leader>lz", function()
+		vim.keymap.set("n", "<leader>dl", function()
 			builtin.find_files({
 				cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
 			})

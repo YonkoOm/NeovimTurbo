@@ -16,9 +16,7 @@ return {
 		},
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local mason_lspconfig = require("mason-lspconfig")
 
 		local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 		local enable_format_on_save = function(_, bufnr)
@@ -54,50 +52,23 @@ return {
 		-- We override these capabilities sent to the server such that these completion candidates provided by nvim_lsp are provided by the server during a completion request
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		mason_lspconfig.setup_handlers({
-			-- Default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			-- Below are specific LSP's we don't run the default handler on due to specific configurations
-			["jdtls"] = function()
-				lspconfig.jdtls.setup({
-					capabilities = capabilities,
-					on_attach = function(client, bufnr)
-						enable_format_on_save(client, bufnr)
-					end,
-				})
-			end,
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig.lua_ls.setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					completion = {
+						callSnippet = "Replace",
 					},
-				})
-			end,
-			["clangd"] = function()
-				lspconfig.clangd.setup({
-					capabilities = capabilities,
-					cmd = {
-						"clangd",
-						"--background-index",
-						"--suggest-missing-includes",
-						"--clang-tidy",
-						"--header-insertion=iwyu",
-					},
-					filetypes = {
-						"c",
-						"cpp",
-					},
-				})
+				},
+			},
+		})
+
+		vim.lsp.config("jdtls", {
+			on_attach = function(client, bufnr)
+				enable_format_on_save(client, bufnr)
 			end,
 		})
 
@@ -108,13 +79,6 @@ return {
 			severity_sort = true,
 		})
 
-		-- Diagnostic symbols in the sign column (gutter)
-		local signs = { Error = "", Warn = " ", Hint = "󰌶", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
-
 		vim.diagnostic.config({
 			virtual_text = {
 				prefix = "●",
@@ -122,6 +86,15 @@ return {
 			update_in_insert = true,
 			float = {
 				source = true, -- Or "if_many"
+			},
+			signs = {
+				-- Diagnostic symbols in the sign column (gutter)
+				text = {
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.HINT] = "󰌶",
+					[vim.diagnostic.severity.INFO] = "",
+				},
 			},
 		})
 	end,
