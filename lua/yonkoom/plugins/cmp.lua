@@ -45,7 +45,7 @@ return {
 					return vim_item
 				end
 			end
-			vim_item.kind = lspkind.symbolic(vim_item.kind) and lspkind.symbolic(vim_item.kind) or vim_item.kind
+			vim_item.kind = lspkind.symbolic(vim_item.kind) or vim_item.kind
 			return vim_item
 		end
 
@@ -79,6 +79,7 @@ return {
 				{ name = "luasnip" }, -- snippets
 			}),
 			formatting = {
+				fields = { "abbr", "kind", "menu" }, -- only show the abbreviation and kind, with the icon being added in the before property (the icon property was added here causing double icons)
 				format = lspkind.cmp_format({
 					maxwidth = 50,
 					ellipsis_char = "...",

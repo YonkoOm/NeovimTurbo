@@ -39,7 +39,7 @@ return {
 				local opts = { buffer = ev.buf, noremap = true, silent = true }
 
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
-				vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 				-- keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
@@ -72,28 +72,26 @@ return {
 			end,
 		})
 
-		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-			underline = true,
-			update_in_insert = false,
-			virtual_text = { spacing = 4, prefix = "●" },
-			severity_sort = true,
-		})
+		local severity = vim.diagnostic.severity
 
 		vim.diagnostic.config({
 			virtual_text = {
 				prefix = "●",
+				spacing = 4,
 			},
-			update_in_insert = true,
+			underline = true,
+			severity_sort = true,
+			update_in_insert = false,
 			float = {
 				source = true, -- Or "if_many"
 			},
 			signs = {
 				-- Diagnostic symbols in the sign column (gutter)
 				text = {
-					[vim.diagnostic.severity.ERROR] = "",
-					[vim.diagnostic.severity.WARN] = "",
-					[vim.diagnostic.severity.HINT] = "󰌶",
-					[vim.diagnostic.severity.INFO] = "",
+					[severity.ERROR] = "",
+					[severity.WARN] = "",
+					[severity.HINT] = "󰌶",
+					[severity.INFO] = "",
 				},
 			},
 		})
