@@ -24,9 +24,9 @@ return {
 		vim.keymap.set("n", "K", "<Cmd>Lspsaga hover_doc<CR>", opts)
 		vim.keymap.set("n", "gd", "<Cmd>Lspsaga finder<CR>", opts)
 		vim.keymap.set("n", "gt", "<Cmd>Lspsaga goto_definition<CR>", opts)
-		vim.keymap.set("i", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 		vim.keymap.set("n", "gp", "<Cmd>Lspsaga peek_definition<CR>", opts)
-		vim.keymap.set("n", "rn", "<Cmd>Lspsaga rename<CR>", opts)
+		vim.keymap.set("n", "<leader>rn", "<Cmd>Lspsaga rename<CR>", opts)
 
 		-- code action
 		vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
