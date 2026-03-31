@@ -1,6 +1,5 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -23,6 +22,7 @@ return {
 
 		telescope.setup({
 			defaults = {
+				-- path_display = { "smart" },
 				mappings = {
 					n = {
 						["q"] = actions.close,
@@ -115,12 +115,14 @@ return {
 			})
 		end)
 
+		vim.keymap.set("n", ";c", builtin.lsp_incoming_calls)
+
 		vim.keymap.set("n", ";r", builtin.live_grep)
 		vim.keymap.set("n", "\\\\", builtin.buffers)
 		vim.keymap.set("n", ";t", builtin.help_tags)
 		vim.keymap.set("n", ";;", builtin.resume)
 		vim.keymap.set("n", ";e", builtin.diagnostics)
 		vim.keymap.set("n", ";o", builtin.oldfiles)
-		vim.keymap.set("n", ";c", builtin.grep_string)
+		-- vim.keymap.set("n", ";c", builtin.grep_string)
 	end,
 }

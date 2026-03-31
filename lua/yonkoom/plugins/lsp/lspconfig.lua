@@ -40,11 +40,11 @@ return {
 
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 				-- keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
 				opts.desc = "Restart LSP"
-				vim.keymap.set("n", "<leader>rs", "<Cmd>LspRestart<CR>", opts)
+				vim.keymap.set("n", "<leader>rs", "<Cmd>lsp restart<CR>", opts)
 			end,
 		})
 
